@@ -2,7 +2,7 @@ package main
 
 import (
     "./handler"
-    "./intercepter"
+    //"./intercepter"
     //"fmt"
     //"net/http"
     "github.com/labstack/echo"
@@ -22,15 +22,17 @@ func main() {
     // 全てのリクエストで差し込みたいミドルウェア（ログとか）はここ
     e.Use(middleware.Logger())
     e.Use(middleware.Recover())
+    e.Use(middleware.Gzip())
 
     // Basic Auth
-    e.Use(interceptor.BasicAuth())
+    // e.Use(interceptor.BasicAuth())
 
     // CORS
     e.Use(middleware.CORS())
 
     // ルーティング
-    e.GET("/hello/:username", handler.MainPage(), interceptor.BasicAuth())
+    // e.GET("/hello/:username", handler.MainPage(), interceptor.BasicAuth())
+    e.GET("/hello/:username", handler.MainPage())
 
     e.GET("/json", handler.JsonReturn())
 

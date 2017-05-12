@@ -1,0 +1,10 @@
+package: .
+import:
+- package: github.com/go-sql-driver/mysql
+  version: v1.3
+- package: github.com/gocraft/dbr
+  version: v2.1
+- package: github.com/labstack/echo
+  version: v3.1.0
+  subpackages:
+  - middleware
